@@ -4,3 +4,4 @@ target/
 *.class
 *.log
 .env
+src/main/resources/database.properties
