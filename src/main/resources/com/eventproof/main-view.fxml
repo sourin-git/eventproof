@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.eventproof.controller.MainController"
+      alignment="CENTER" spacing="12" styleClass="main-container">
+    <Label text="EventProof" styleClass="app-title" />
+    <Label text="Event-Driven Reliability Testing Platform" styleClass="app-subtitle" />
+    <Label text="Review 1" styleClass="review-label" />
+</VBox>

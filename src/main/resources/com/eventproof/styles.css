@@ -1,0 +1,20 @@
+.main-container {
+    -fx-background-color: #f7f9fc;
+    -fx-padding: 32;
+}
+
+.app-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #17324d;
+}
+
+.app-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #4b6073;
+}
+
+.review-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #2268a8;
+}
