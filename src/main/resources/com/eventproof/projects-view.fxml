@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.eventproof.controller.ProjectsController"
+            fitToWidth="true" hbarPolicy="NEVER" styleClass="page-scroll">
+    <content>
+        <VBox spacing="30" styleClass="page-content">
+            <VBox spacing="8">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="WORKSPACE" styleClass="eyebrow" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label text="REVIEW 1" styleClass="review-badge" />
+                </HBox>
+                <Label text="Projects" styleClass="page-title" />
+                <Label text="Define the event flows you want to test."
+                       styleClass="page-subtitle" />
+            </VBox>
+
+            <VBox spacing="12" styleClass="empty-panel">
+                <Label text="Project workspace" styleClass="panel-title" />
+                <Label text="Project browsing and creation controls will appear here."
+                       wrapText="true" styleClass="panel-description" />
+            </VBox>
+        </VBox>
+    </content>
+</ScrollPane>

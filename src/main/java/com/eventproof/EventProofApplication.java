@@ -15,10 +15,12 @@ public class EventProofApplication extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/eventproof/main-view.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 720, 480);
+        Scene scene = new Scene(root, 1200, 750);
         scene.getStylesheets().add(getClass().getResource("/com/eventproof/styles.css").toExternalForm());
 
-        stage.setTitle("EventProof");
+        stage.setTitle("EventProof - Reliability Testing Platform");
+        stage.setMinWidth(1000);
+        stage.setMinHeight(640);
         stage.setScene(scene);
         stage.show();
     }

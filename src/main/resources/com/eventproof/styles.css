@@ -1,20 +1,138 @@
-.main-container {
-    -fx-background-color: #f7f9fc;
-    -fx-padding: 32;
-}
-
-.app-title {
-    -fx-font-size: 32px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #17324d;
-}
-
-.app-subtitle {
-    -fx-font-size: 16px;
-    -fx-text-fill: #4b6073;
-}
-
-.review-label {
+.root {
+    -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #2268a8;
+}
+
+.app-shell,
+.content-area,
+.page-scroll,
+.page-scroll > .viewport {
+    -fx-background-color: #f4f6f8;
+}
+
+.page-scroll {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.sidebar {
+    -fx-background-color: #17212d;
+    -fx-padding: 28 16 20 16;
+    -fx-spacing: 8;
+}
+
+.brand-block {
+    -fx-padding: 2 12 32 12;
+}
+
+.brand-title {
+    -fx-text-fill: #f7f9fc;
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+}
+
+.brand-subtitle,
+.sidebar-section-label,
+.sidebar-footer-title {
+    -fx-text-fill: #8293a6;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-section-label {
+    -fx-padding: 0 12 8 12;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-text-fill: #b8c4d1;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 16 12 16;
+    -fx-cursor: hand;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #223244;
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar-button.selected {
+    -fx-background-color: #2d4054;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.sidebar-footer {
+    -fx-border-color: #324253 transparent transparent transparent;
+    -fx-padding: 18 12 0 12;
+}
+
+.sidebar-footer-subtitle {
+    -fx-text-fill: #a9b7c6;
+    -fx-font-size: 12px;
+}
+
+.page-content {
+    -fx-padding: 40 44 48 44;
+}
+
+.eyebrow {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.review-badge {
+    -fx-background-color: #e5ebf1;
+    -fx-background-radius: 5;
+    -fx-padding: 6 10 6 10;
+    -fx-text-fill: #465c72;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.page-title {
+    -fx-text-fill: #1d2937;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.page-subtitle {
+    -fx-text-fill: #637386;
+    -fx-font-size: 14px;
+}
+
+.summary-card,
+.empty-panel,
+.info-panel {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-color: #e0e6ed;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 24;
+}
+
+.summary-card {
+    -fx-min-height: 156;
+}
+
+.empty-panel {
+    -fx-min-height: 210;
+}
+
+.card-title,
+.panel-title {
+    -fx-text-fill: #27384a;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+.card-description,
+.panel-description {
+    -fx-text-fill: #68798b;
+    -fx-font-size: 13px;
+    -fx-line-spacing: 3;
 }
