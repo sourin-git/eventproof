@@ -2,53 +2,118 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
+<ScrollPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.eventproof.controller.DashboardController"
             fitToWidth="true" hbarPolicy="NEVER" styleClass="page-scroll">
     <content>
-        <VBox spacing="30" styleClass="page-content">
-            <VBox spacing="8">
+        <VBox spacing="22" minWidth="0" styleClass="page-content">
+            <VBox spacing="7">
                 <HBox alignment="CENTER_LEFT">
-                    <Label text="OVERVIEW" styleClass="eyebrow" />
+                    <Label text="OPERATIONS / OVERVIEW" styleClass="eyebrow" />
                     <Region HBox.hgrow="ALWAYS" />
-                    <Label text="REVIEW 1" styleClass="review-badge" />
+                    <Label text="REVIEW 1" styleClass="context-label" />
                 </HBox>
-                <Label text="Dashboard" styleClass="page-title" />
-                <Label text="A workspace for exploring reliability in ordered event flows."
-                       styleClass="page-subtitle" />
+                <Label text="EventProof" styleClass="page-title" />
+                <Label text="Reliability workspace" styleClass="page-subtitle" />
+                <Label text="Fault injection and event-flow analysis." styleClass="body-muted" />
             </VBox>
 
-            <HBox spacing="16">
-                <VBox spacing="12" prefWidth="260" maxWidth="Infinity"
-                      HBox.hgrow="ALWAYS" styleClass="summary-card">
-                    <Label text="Projects" styleClass="card-title" />
-                    <Label text="Organize event flows into focused project workspaces."
-                           wrapText="true" styleClass="card-description" />
+            <HBox spacing="12">
+                <VBox spacing="7" prefWidth="240" minWidth="0" maxWidth="Infinity"
+                      HBox.hgrow="ALWAYS" styleClass="panel,metric-panel">
+                    <Label text="PROJECTS" styleClass="metric-label" />
+                    <Label text="&#8212;" styleClass="metric-value" />
+                    <Label text="Registered systems" styleClass="body-muted" />
                 </VBox>
-                <VBox spacing="12" prefWidth="260" maxWidth="Infinity"
-                      HBox.hgrow="ALWAYS" styleClass="summary-card">
-                    <Label text="Events" styleClass="card-title" />
-                    <Label text="Define the original sequence and sample event payloads."
-                           wrapText="true" styleClass="card-description" />
+                <VBox spacing="7" prefWidth="240" minWidth="0" maxWidth="Infinity"
+                      HBox.hgrow="ALWAYS" styleClass="panel,metric-panel">
+                    <Label text="EVENTS" styleClass="metric-label" />
+                    <Label text="&#8212;" styleClass="metric-value" />
+                    <Label text="Event definitions" styleClass="body-muted" />
                 </VBox>
-                <VBox spacing="12" prefWidth="260" maxWidth="Infinity"
-                      HBox.hgrow="ALWAYS" styleClass="summary-card">
-                    <Label text="Experiments" styleClass="card-title" />
-                    <Label text="Inspect timelines after normal, duplicate, or drop runs."
-                           wrapText="true" styleClass="card-description" />
+                <VBox spacing="7" prefWidth="240" minWidth="0" maxWidth="Infinity"
+                      HBox.hgrow="ALWAYS" styleClass="panel,metric-panel">
+                    <Label text="EXPERIMENTS" styleClass="metric-label" />
+                    <Label text="&#8212;" styleClass="metric-value" />
+                    <Label text="Test runs" styleClass="body-muted" />
                 </VBox>
             </HBox>
 
-            <VBox spacing="10" styleClass="info-panel">
-                <Label text="Review 1 workflow" styleClass="panel-title" />
-                <Label text="Create a project, register its ordered events, then run a reliability experiment."
-                       wrapText="true" styleClass="panel-description" />
+            <VBox spacing="18" styleClass="panel,flow-panel">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Event Flow Preview" styleClass="section-title" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label text="ILLUSTRATIVE" styleClass="context-label" />
+                </HBox>
+                <Label text="Inspect how an ordered event flow changes when a fault is injected."
+                       wrapText="true" styleClass="body-muted" />
+                <VBox spacing="11">
+                    <Label text="ORIGINAL SEQUENCE" styleClass="eyebrow" />
+                    <GridPane alignment="CENTER" minWidth="0">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="22" />
+                            <ColumnConstraints percentWidth="4" />
+                            <ColumnConstraints percentWidth="22" />
+                            <ColumnConstraints percentWidth="4" />
+                            <ColumnConstraints percentWidth="22" />
+                            <ColumnConstraints percentWidth="4" />
+                            <ColumnConstraints percentWidth="22" />
+                        </columnConstraints>
+                        <VBox spacing="7" minWidth="0" styleClass="flow-node">
+                            <Label text="01 / NORMAL" styleClass="node-meta,normal-text" />
+                            <Label text="ORDER_CREATED" wrapText="true" minWidth="0" styleClass="event-code" />
+                        </VBox>
+                        <Label text="&#8594;" GridPane.columnIndex="1" GridPane.halignment="CENTER" styleClass="flow-arrow" />
+                        <VBox spacing="7" minWidth="0" GridPane.columnIndex="2" styleClass="flow-node">
+                            <Label text="02 / NORMAL" styleClass="node-meta,normal-text" />
+                            <Label text="PAYMENT_COMPLETED" wrapText="true" minWidth="0" styleClass="event-code" />
+                        </VBox>
+                        <Label text="&#8594;" GridPane.columnIndex="3" GridPane.halignment="CENTER" styleClass="flow-arrow" />
+                        <VBox spacing="7" minWidth="0" GridPane.columnIndex="4" styleClass="flow-node">
+                            <Label text="03 / NORMAL" styleClass="node-meta,normal-text" />
+                            <Label text="INVENTORY_RESERVED" wrapText="true" minWidth="0" styleClass="event-code" />
+                        </VBox>
+                        <Label text="&#8594;" GridPane.columnIndex="5" GridPane.halignment="CENTER" styleClass="flow-arrow" />
+                        <VBox spacing="7" minWidth="0" GridPane.columnIndex="6" styleClass="flow-node">
+                            <Label text="04 / NORMAL" styleClass="node-meta,normal-text" />
+                            <Label text="ORDER_CONFIRMED" wrapText="true" minWidth="0" styleClass="event-code" />
+                        </VBox>
+                    </GridPane>
+                </VBox>
+
+                <HBox spacing="15" alignment="CENTER_LEFT" styleClass="injection-row">
+                    <Label text="INJECTED" styleClass="eyebrow" />
+                    <VBox spacing="4">
+                        <Label text="PAYMENT_COMPLETED" styleClass="event-code" />
+                        <Label text="DUPLICATE" styleClass="node-meta,duplicate-text" />
+                    </VBox>
+                    <Label text="A second occurrence follows the original event."
+                           wrapText="true" styleClass="body-muted" />
+                </HBox>
+                <HBox spacing="18" alignment="CENTER_LEFT" styleClass="legend-row">
+                    <Label text="FAULT KEY" styleClass="eyebrow" />
+                    <HBox spacing="5" alignment="CENTER_LEFT">
+                        <Label text="&#9679;" styleClass="normal-text" />
+                        <Label text="NORMAL" styleClass="legend-text" />
+                    </HBox>
+                    <HBox spacing="5" alignment="CENTER_LEFT">
+                        <Label text="&#9679;" styleClass="duplicate-text" />
+                        <Label text="DUPLICATE" styleClass="legend-text" />
+                    </HBox>
+                    <HBox spacing="5" alignment="CENTER_LEFT">
+                        <Label text="&#9679;" styleClass="drop-text" />
+                        <Label text="DROP" styleClass="legend-text" />
+                    </HBox>
+                </HBox>
             </VBox>
+            <Label text="PREVIEW ONLY  /  Workspace metrics will appear when the UI is connected."
+                   styleClass="metadata" />
         </VBox>
     </content>
 </ScrollPane>
