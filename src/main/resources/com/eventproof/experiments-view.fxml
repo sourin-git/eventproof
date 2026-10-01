@@ -16,7 +16,7 @@
             fx:controller="com.eventproof.controller.ExperimentsController"
             fitToWidth="true" hbarPolicy="NEVER" styleClass="page-scroll">
     <content>
-        <VBox spacing="20" minWidth="0" styleClass="page-content">
+        <VBox spacing="22" minWidth="0" styleClass="page-content">
             <VBox spacing="7">
                 <HBox alignment="CENTER_LEFT">
                     <Label text="OPERATIONS / TESTING" styleClass="eyebrow" />

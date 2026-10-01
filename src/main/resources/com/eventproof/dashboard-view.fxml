@@ -28,19 +28,19 @@
                 <VBox spacing="7" prefWidth="240" minWidth="0" maxWidth="Infinity"
                       HBox.hgrow="ALWAYS" styleClass="panel,metric-panel">
                     <Label text="PROJECTS" styleClass="metric-label" />
-                    <Label text="&#8212;" styleClass="metric-value" />
+                    <Label fx:id="projectsMetric" text="&#8212;" styleClass="metric-value" />
                     <Label text="Registered systems" styleClass="body-muted" />
                 </VBox>
                 <VBox spacing="7" prefWidth="240" minWidth="0" maxWidth="Infinity"
                       HBox.hgrow="ALWAYS" styleClass="panel,metric-panel">
                     <Label text="EVENTS" styleClass="metric-label" />
-                    <Label text="&#8212;" styleClass="metric-value" />
+                    <Label fx:id="eventsMetric" text="&#8212;" styleClass="metric-value" />
                     <Label text="Event definitions" styleClass="body-muted" />
                 </VBox>
                 <VBox spacing="7" prefWidth="240" minWidth="0" maxWidth="Infinity"
                       HBox.hgrow="ALWAYS" styleClass="panel,metric-panel">
                     <Label text="EXPERIMENTS" styleClass="metric-label" />
-                    <Label text="&#8212;" styleClass="metric-value" />
+                    <Label fx:id="experimentsMetric" text="&#8212;" styleClass="metric-value" />
                     <Label text="Test runs" styleClass="body-muted" />
                 </VBox>
             </HBox>
@@ -111,9 +111,10 @@
                         <Label text="DROP" styleClass="legend-text" />
                     </HBox>
                 </HBox>
+                <Label text="NORMAL keeps the flow intact. DUPLICATE repeats the target. DROP omits it."
+                       wrapText="true" styleClass="body-muted" />
             </VBox>
-            <Label text="PREVIEW ONLY  /  Workspace metrics will appear when the UI is connected."
-                   styleClass="metadata" />
+            <Label fx:id="metricsStatusLabel" text="Loading workspace metrics..." styleClass="metadata" />
         </VBox>
     </content>
 </ScrollPane>

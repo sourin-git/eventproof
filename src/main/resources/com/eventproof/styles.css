@@ -290,7 +290,7 @@
 }
 .console-input .scroll-pane,
 .console-input .scroll-pane .viewport { -fx-background-color: -ep-recess; }
-.validation-error { -fx-text-fill: -ep-duplicate; -fx-font-size: 12px; }
+.validation-error { -fx-text-fill: -ep-drop; -fx-font-size: 12px; }
 
 /* Experiment summaries and persisted occurrence markers. */
 .result-summary {

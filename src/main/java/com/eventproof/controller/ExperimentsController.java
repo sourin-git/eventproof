@@ -157,7 +157,7 @@ public class ExperimentsController {
                 runButton.setDisable(false);
                 projectCombo.getSelectionModel().selectFirst();
             }
-        } catch (SQLException exception) {
+        } catch (SQLException | IllegalStateException exception) {
             formHintLabel.setText("Projects are unavailable. Check the database connection.");
             runButton.setDisable(true);
             showError("Could not load projects",
@@ -191,7 +191,7 @@ public class ExperimentsController {
                     : "Events run in their registered sequence order.");
             updateFaultType();
             refreshHistory(null);
-        } catch (SQLException exception) {
+        } catch (SQLException | IllegalStateException exception) {
             formHintLabel.setText("Could not load this project's events.");
             showError("Could not load project data",
                     "The events or experiment history are unavailable. Check the database connection and try again.");
@@ -256,10 +256,14 @@ public class ExperimentsController {
                     : "The experiment could not be saved. Check the database connection and try again.";
             showError("Could not run experiment", message);
             return;
+        } catch (IllegalStateException exception) {
+            showError("Could not run experiment",
+                    "Database configuration is unavailable. Check the local setup and try again.");
+            return;
         }
         try {
             refreshHistory(completed.getId());
-        } catch (SQLException exception) {
+        } catch (SQLException | IllegalStateException exception) {
             showExperiment(completed);
             showError("Experiment completed",
                     "The experiment was saved, but history could not be refreshed. Reopen this page to retry.");
@@ -311,7 +315,7 @@ public class ExperimentsController {
                     "status-" + experiment.getStatus().name().toLowerCase());
             resultSummary.setVisible(true);
             resultSummary.setManaged(true);
-        } catch (SQLException exception) {
+        } catch (SQLException | IllegalStateException exception) {
             clearResult();
             showError("Could not load result",
                     "The saved timeline is unavailable. Check the database connection and try again.");

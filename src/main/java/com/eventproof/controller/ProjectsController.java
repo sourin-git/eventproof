@@ -105,7 +105,7 @@ public class ProjectsController {
                 toSelect = loaded.getFirst();
             }
             projectsTable.getSelectionModel().select(toSelect);
-        } catch (SQLException exception) {
+        } catch (SQLException | IllegalStateException exception) {
             showDatabaseError("Could not load projects",
                     "The project list is unavailable. Check the database connection and try again.");
         }
@@ -123,7 +123,7 @@ public class ProjectsController {
         eventsTable.setPlaceholder(new Label("No events registered for this project."));
         try {
             events.setAll(eventService.getProjectEvents(project.getId()));
-        } catch (SQLException exception) {
+        } catch (SQLException | IllegalStateException exception) {
             eventsTable.setPlaceholder(new Label("Could not load events for this project."));
             showDatabaseError("Could not load events",
                     "The event flow is unavailable. Check the database connection and try again.");
@@ -171,6 +171,10 @@ public class ProjectsController {
                         name, description.isBlank() ? null : description);
             } catch (SQLException exception) {
                 showDatabaseError("Could not create project", projectErrorMessage(exception));
+                event.consume();
+            } catch (IllegalStateException exception) {
+                showDatabaseError("Could not create project",
+                        "Database configuration is unavailable. Check the local setup and try again.");
                 event.consume();
             }
         });
@@ -241,6 +245,10 @@ public class ProjectsController {
                         payload.isBlank() ? null : payload);
             } catch (SQLException exception) {
                 showDatabaseError("Could not add event", eventErrorMessage(exception));
+                event.consume();
+            } catch (IllegalStateException exception) {
+                showDatabaseError("Could not add event",
+                        "Database configuration is unavailable. Check the local setup and try again.");
                 event.consume();
             }
         });
