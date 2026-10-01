@@ -222,3 +222,72 @@
 .scroll-bar .track, .scroll-bar .increment-button, .scroll-bar .decrement-button { -fx-background-color: transparent; }
 .scroll-bar .increment-arrow, .scroll-bar .decrement-arrow { -fx-background-color: transparent; -fx-padding: 0; }
 .tooltip { -fx-background-color: #303130; -fx-text-fill: -ep-text; -fx-font-size: 12px; }
+
+/* Data tables use the same charcoal surfaces as the console panels. */
+.console-table {
+    -fx-background-color: -ep-panel;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 0;
+}
+.console-table .column-header-background,
+.console-table .filler {
+    -fx-background-color: #252626;
+    -fx-border-color: -ep-border transparent -ep-border transparent;
+}
+.console-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-size: 38;
+}
+.console-table .column-header .label {
+    -fx-text-fill: -ep-muted;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 10;
+}
+.console-table .table-row-cell {
+    -fx-background-color: -ep-panel;
+    -fx-border-color: transparent transparent #303131 transparent;
+    -fx-table-cell-border-color: transparent;
+}
+.console-table .table-row-cell:filled:hover { -fx-background-color: #292a29; }
+.console-table .table-row-cell:filled:selected { -fx-background-color: #3a342b; }
+.console-table .table-cell {
+    -fx-text-fill: -ep-text;
+    -fx-font-size: 12px;
+    -fx-padding: 11 10;
+}
+.console-table .placeholder { -fx-background-color: -ep-panel; }
+.console-table .placeholder .label {
+    -fx-text-fill: -ep-muted;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}
+.console-table .virtual-flow .corner { -fx-background-color: -ep-panel; }
+
+/* Project and event dialogs share the application palette. */
+.console-dialog {
+    -fx-background-color: -ep-panel;
+    -fx-border-color: -ep-border;
+    -fx-padding: 0;
+}
+.console-dialog .header-panel,
+.console-dialog .button-bar { -fx-background-color: -ep-panel; }
+.console-dialog .header-panel .label {
+    -fx-text-fill: -ep-text;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+.console-dialog .content.label { -fx-text-fill: -ep-muted; }
+.dialog-form { -fx-padding: 8 4 4 4; }
+.dialog-form .console-input { -fx-pref-width: 400; }
+.console-input .content {
+    -fx-background-color: -ep-recess;
+    -fx-background-radius: 4;
+}
+.console-input .scroll-pane,
+.console-input .scroll-pane .viewport { -fx-background-color: -ep-recess; }
+.validation-error { -fx-text-fill: -ep-duplicate; -fx-font-size: 12px; }

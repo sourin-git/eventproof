@@ -3,9 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
@@ -22,46 +21,51 @@
                     <Label text="REVIEW 1" styleClass="context-label" />
                 </HBox>
                 <Label text="Projects" styleClass="page-title" />
-                <Label text="Registered systems and their event flows."
+                <Label text="Registered systems and their ordered event flows."
                        wrapText="true" styleClass="page-subtitle" />
             </VBox>
 
-            <VBox styleClass="panel,resource-list">
-                <HBox spacing="16" alignment="CENTER_LEFT" styleClass="panel-toolbar">
-                    <VBox spacing="4" HBox.hgrow="ALWAYS">
-                        <Label text="Project Registry" styleClass="section-title" />
-                        <Label text="System inventory" styleClass="body-muted" />
-                    </VBox>
-                    <Button text="New Project" disable="true" styleClass="primary-button">
-                        <tooltip><Tooltip text="Project creation will be connected in a later UI step." /></tooltip>
-                    </Button>
-                </HBox>
-                <GridPane styleClass="table-heading">
-                    <columnConstraints>
-                        <ColumnConstraints percentWidth="46" />
-                        <ColumnConstraints percentWidth="16" />
-                        <ColumnConstraints percentWidth="22" />
-                        <ColumnConstraints percentWidth="16" />
-                    </columnConstraints>
-                    <Label text="PROJECT" styleClass="table-column-title" />
-                    <Label text="EVENTS" GridPane.columnIndex="1" styleClass="table-column-title" />
-                    <Label text="CREATED" GridPane.columnIndex="2" styleClass="table-column-title" />
-                    <Label text="STATUS" GridPane.columnIndex="3" styleClass="table-column-title" />
-                </GridPane>
-                <HBox spacing="16" alignment="CENTER_LEFT" styleClass="empty-table-row">
-                    <Label text="—" styleClass="empty-row-mark" />
-                    <VBox spacing="4">
-                        <Label text="No project records shown" styleClass="empty-row-title" />
-                        <Label text="The resource list will populate when the UI is connected."
-                               wrapText="true" styleClass="body-muted" />
-                    </VBox>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" styleClass="table-footer">
-                    <Label text="RESOURCE LIST PREVIEW" styleClass="metadata" />
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Label text="0 SHOWN" styleClass="metadata" />
-                </HBox>
-            </VBox>
+            <HBox spacing="14" alignment="TOP_LEFT">
+                <VBox spacing="0" prefWidth="390" minWidth="0" maxWidth="Infinity"
+                      HBox.hgrow="ALWAYS" styleClass="panel,resource-list">
+                    <HBox spacing="14" alignment="CENTER_LEFT" styleClass="panel-toolbar">
+                        <VBox spacing="4" HBox.hgrow="ALWAYS">
+                            <Label text="Project Registry" styleClass="section-title" />
+                            <Label fx:id="projectCountLabel" text="REGISTERED SYSTEMS" styleClass="metadata" />
+                        </VBox>
+                        <Button fx:id="newProjectButton" text="New Project" onAction="#showCreateProjectDialog"
+                                styleClass="primary-button" />
+                    </HBox>
+                    <TableView fx:id="projectsTable" prefHeight="430" minHeight="330"
+                               minWidth="0" VBox.vgrow="ALWAYS" styleClass="console-table">
+                        <columns>
+                            <TableColumn fx:id="projectNameColumn" text="PROJECT" prefWidth="145" />
+                            <TableColumn fx:id="projectDescriptionColumn" text="DESCRIPTION" prefWidth="135" />
+                            <TableColumn fx:id="projectCreatedColumn" text="CREATED" prefWidth="96" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <VBox spacing="0" prefWidth="510" minWidth="0" maxWidth="Infinity"
+                      HBox.hgrow="ALWAYS" styleClass="panel,resource-list">
+                    <HBox spacing="14" alignment="CENTER_LEFT" styleClass="panel-toolbar">
+                        <VBox spacing="4" HBox.hgrow="ALWAYS">
+                            <Label text="Event Flow" styleClass="section-title" />
+                            <Label fx:id="selectedProjectLabel" text="SELECT A PROJECT" styleClass="metadata" />
+                        </VBox>
+                        <Button fx:id="addEventButton" text="Add Event" disable="true"
+                                onAction="#showAddEventDialog" styleClass="secondary-button" />
+                    </HBox>
+                    <TableView fx:id="eventsTable" prefHeight="430" minHeight="330"
+                               minWidth="0" VBox.vgrow="ALWAYS" styleClass="console-table">
+                        <columns>
+                            <TableColumn fx:id="sequenceColumn" text="SEQUENCE" prefWidth="80" />
+                            <TableColumn fx:id="eventNameColumn" text="EVENT NAME" prefWidth="180" />
+                            <TableColumn fx:id="payloadColumn" text="SAMPLE PAYLOAD" prefWidth="240" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </HBox>
         </VBox>
     </content>
 </ScrollPane>
