@@ -10,8 +10,8 @@
     -ep-subtle: #8d918d;
     -ep-accent: #c1a16a;
     -ep-normal: #96af91;
-    -ep-duplicate: #c88b80;
-    -ep-drop: #c2a06c;
+    -ep-duplicate: #c2a06c;
+    -ep-drop: #c88b80;
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-focus-color: -ep-accent;
@@ -291,3 +291,52 @@
 .console-input .scroll-pane,
 .console-input .scroll-pane .viewport { -fx-background-color: -ep-recess; }
 .validation-error { -fx-text-fill: -ep-duplicate; -fx-font-size: 12px; }
+
+/* Experiment summaries and persisted occurrence markers. */
+.result-summary {
+    -fx-padding: 14;
+    -fx-background-color: -ep-recess;
+    -fx-background-radius: 4;
+    -fx-border-color: -ep-border;
+    -fx-border-radius: 4;
+}
+.result-name { -fx-font-size: 14px; -fx-font-weight: bold; }
+.summary-value { -fx-text-fill: -ep-text; -fx-font-size: 12px; }
+.fault-chip, .status-chip, .occurrence-chip {
+    -fx-background-radius: 3;
+    -fx-padding: 4 7;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+.fault-chip.fault-normal, .occurrence-chip.kind-normal {
+    -fx-background-color: #303a30;
+    -fx-text-fill: -ep-normal;
+}
+.fault-chip.fault-duplicate, .occurrence-chip.kind-duplicate {
+    -fx-background-color: #3b3429;
+    -fx-text-fill: -ep-duplicate;
+}
+.fault-chip.fault-drop {
+    -fx-background-color: #40302e;
+    -fx-text-fill: -ep-drop;
+}
+.status-chip.status-completed {
+    -fx-background-color: #303a30;
+    -fx-text-fill: -ep-normal;
+}
+.status-chip.status-pending {
+    -fx-background-color: #3b3429;
+    -fx-text-fill: -ep-duplicate;
+}
+.console-combo.fault-normal {
+    -fx-border-color: -ep-border -ep-border -ep-border -ep-normal;
+    -fx-border-width: 1 1 1 3;
+}
+.console-combo.fault-duplicate {
+    -fx-border-color: -ep-border -ep-border -ep-border -ep-duplicate;
+    -fx-border-width: 1 1 1 3;
+}
+.console-combo.fault-drop {
+    -fx-border-color: -ep-border -ep-border -ep-border -ep-drop;
+    -fx-border-width: 1 1 1 3;
+}

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
@@ -16,7 +16,7 @@
             fx:controller="com.eventproof.controller.ExperimentsController"
             fitToWidth="true" hbarPolicy="NEVER" styleClass="page-scroll">
     <content>
-        <VBox spacing="22" minWidth="0" styleClass="page-content">
+        <VBox spacing="20" minWidth="0" styleClass="page-content">
             <VBox spacing="7">
                 <HBox alignment="CENTER_LEFT">
                     <Label text="OPERATIONS / TESTING" styleClass="eyebrow" />
@@ -29,88 +29,99 @@
             </VBox>
 
             <HBox spacing="14" alignment="TOP_LEFT">
-                <VBox spacing="16" prefWidth="330" minWidth="0" maxWidth="Infinity"
+                <VBox spacing="14" prefWidth="325" minWidth="0" maxWidth="Infinity"
                       HBox.hgrow="ALWAYS" styleClass="panel,configuration-panel">
                     <VBox spacing="4">
                         <Label text="Experiment Configuration" styleClass="section-title" />
                         <Label text="SELECT A FLOW AND FAULT" styleClass="metadata" />
                     </VBox>
                     <VBox spacing="7">
+                        <Label text="EXPERIMENT NAME" styleClass="field-label" />
+                        <TextField fx:id="experimentNameField" promptText="e.g. Duplicate Payment Demo"
+                                   styleClass="console-input" />
+                    </VBox>
+                    <VBox spacing="7">
                         <Label text="PROJECT" styleClass="field-label" />
-                        <ComboBox promptText="Select a project" disable="true"
+                        <ComboBox fx:id="projectCombo" promptText="Select a project"
                                   maxWidth="Infinity" minWidth="0" styleClass="console-combo" />
                     </VBox>
                     <VBox spacing="7">
                         <Label text="FAULT TYPE" styleClass="field-label" />
-                        <ComboBox value="NORMAL" maxWidth="Infinity" minWidth="0" styleClass="console-combo">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="NORMAL" />
-                                    <String fx:value="DUPLICATE" />
-                                    <String fx:value="DROP" />
-                                </FXCollections>
-                            </items>
-                        </ComboBox>
-                    </VBox>
-                    <VBox spacing="7">
-                        <Label text="TARGET EVENT" styleClass="field-label" />
-                        <ComboBox promptText="Select an event" disable="true"
+                        <ComboBox fx:id="faultTypeCombo" promptText="Select a fault"
                                   maxWidth="Infinity" minWidth="0" styleClass="console-combo" />
                     </VBox>
                     <VBox spacing="7">
-                        <Label text="EXPERIMENT NAME" styleClass="field-label" />
-                        <TextField promptText="e.g. Payment retry test" disable="true"
-                                   styleClass="console-input" />
+                        <Label text="TARGET EVENT" styleClass="field-label" />
+                        <ComboBox fx:id="targetEventCombo" promptText="Select a target event"
+                                  maxWidth="Infinity" minWidth="0" styleClass="console-combo" />
                     </VBox>
-                    <Button text="Run Experiment" disable="true"
-                            maxWidth="Infinity" styleClass="primary-button">
-                        <tooltip><Tooltip text="Experiment execution will be connected in a later UI step." /></tooltip>
-                    </Button>
-                    <Label text="Configuration preview only." styleClass="metadata" />
+                    <Label fx:id="formHintLabel" text="Select a project to load its events."
+                           wrapText="true" styleClass="body-muted" />
+                    <Label fx:id="validationLabel" wrapText="true" styleClass="validation-error" />
+                    <Button fx:id="runButton" text="Run Experiment" onAction="#runExperiment"
+                            maxWidth="Infinity" styleClass="primary-button" />
                 </VBox>
 
-                <VBox spacing="16" prefWidth="460" minWidth="0" maxWidth="Infinity"
+                <VBox spacing="14" prefWidth="475" minWidth="0" maxWidth="Infinity"
                       HBox.hgrow="ALWAYS" styleClass="panel,result-panel">
                     <HBox alignment="CENTER_LEFT">
                         <VBox spacing="4">
-                            <Label text="Execution Preview / Result" styleClass="section-title" />
-                            <Label text="ORDERED EVENT OCCURRENCES" styleClass="metadata" />
+                            <Label text="Execution Result" styleClass="section-title" />
+                            <Label text="PERSISTED EVENT TIMELINE" styleClass="metadata" />
                         </VBox>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label text="PREVIEW" styleClass="context-label" />
+                        <Label text="REVIEW 1" styleClass="context-label" />
                     </HBox>
-                    <VBox spacing="12" styleClass="timeline-placeholder">
-                        <Label text="TIMELINE" styleClass="eyebrow" />
-                        <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Label text="01" styleClass="row-index" />
-                            <Label text="Event occurrences will appear here" styleClass="body-muted" />
-                        </HBox>
-                        <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Label text="02" styleClass="row-index" />
-                            <Label text="Each row retains its execution order" styleClass="body-muted" />
-                        </HBox>
-                        <Label text="Run an experiment to inspect its result."
-                               wrapText="true" styleClass="metadata" />
+
+                    <VBox fx:id="resultSummary" spacing="11" visible="false" managed="false"
+                          styleClass="result-summary">
+                        <Label fx:id="resultNameLabel" styleClass="result-name" />
+                        <GridPane hgap="14" vgap="8">
+                            <Label text="PROJECT" styleClass="field-label" />
+                            <Label fx:id="resultProjectLabel" GridPane.columnIndex="1"
+                                   styleClass="summary-value" />
+                            <Label text="FAULT" GridPane.rowIndex="1" styleClass="field-label" />
+                            <Label fx:id="resultFaultLabel" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="1" styleClass="fault-chip" />
+                            <Label text="TARGET" GridPane.rowIndex="2" styleClass="field-label" />
+                            <Label fx:id="resultTargetLabel" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="2" styleClass="summary-value" />
+                            <Label text="STATUS" GridPane.rowIndex="3" styleClass="field-label" />
+                            <Label fx:id="resultStatusLabel" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="3" styleClass="status-chip" />
+                        </GridPane>
                     </VBox>
-                    <HBox spacing="15" alignment="CENTER_LEFT" styleClass="legend-row">
-                        <Label text="FAULT KEY" styleClass="eyebrow" />
-                        <HBox spacing="5" alignment="CENTER_LEFT">
-                            <Label text="&#9679;" styleClass="normal-text" />
-                            <Label text="NORMAL" styleClass="legend-text" />
-                        </HBox>
-                        <HBox spacing="5" alignment="CENTER_LEFT">
-                            <Label text="&#9679;" styleClass="duplicate-text" />
-                            <Label text="DUPLICATE" styleClass="legend-text" />
-                        </HBox>
-                        <HBox spacing="5" alignment="CENTER_LEFT">
-                            <Label text="&#9679;" styleClass="drop-text" />
-                            <Label text="DROP" styleClass="legend-text" />
-                        </HBox>
-                    </HBox>
-                    <Label text="Duplicate events appear twice. Dropped events are omitted from the timeline."
-                           wrapText="true" styleClass="body-muted" />
+
+                    <TableView fx:id="timelineTable" prefHeight="235" minHeight="190"
+                               minWidth="0" styleClass="console-table">
+                        <columns>
+                            <TableColumn fx:id="executionColumn" text="EXECUTION" prefWidth="90" />
+                            <TableColumn fx:id="timelineEventColumn" text="EVENT" prefWidth="190" />
+                            <TableColumn fx:id="occurrenceColumn" text="OCCURRENCE" prefWidth="130" />
+                        </columns>
+                    </TableView>
                 </VBox>
             </HBox>
+
+            <VBox spacing="0" styleClass="panel,resource-list">
+                <HBox spacing="12" alignment="CENTER_LEFT" styleClass="panel-toolbar">
+                    <VBox spacing="4">
+                        <Label text="Experiment History" styleClass="section-title" />
+                        <Label text="Select a saved run to reopen its result." styleClass="body-muted" />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="historyCountLabel" text="0 RUNS" styleClass="metadata" />
+                </HBox>
+                <TableView fx:id="historyTable" prefHeight="200" minHeight="150"
+                           minWidth="0" styleClass="console-table">
+                    <columns>
+                        <TableColumn fx:id="historyNameColumn" text="NAME" prefWidth="330" />
+                        <TableColumn fx:id="historyFaultColumn" text="FAULT" prefWidth="170" />
+                        <TableColumn fx:id="historyStatusColumn" text="STATUS" prefWidth="170" />
+                        <TableColumn fx:id="historyCreatedColumn" text="CREATED" prefWidth="180" />
+                    </columns>
+                </TableView>
+            </VBox>
         </VBox>
     </content>
 </ScrollPane>
